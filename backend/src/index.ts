@@ -22,6 +22,8 @@ app.use(
 
 // Health check route
 app.get("/", (req, res) => {
+  throw new Error("test error");
+
   res.status(200).json({
     health: "ok",
   });
