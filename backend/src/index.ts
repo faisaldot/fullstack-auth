@@ -3,6 +3,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import connectDb from "./config/db";
+import errorHandler from "./middleware/error-handler";
 
 const PORT = process.env.PORT || 9001;
 
@@ -25,6 +26,9 @@ app.get("/", (req, res) => {
     health: "ok",
   });
 });
+
+// Error handler middleware
+app.use(errorHandler);
 
 // Listening to server
 app.listen(PORT, () => {
