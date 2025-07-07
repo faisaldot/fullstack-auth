@@ -1,13 +1,11 @@
 import mongoose from 'mongoose'
 
-const MONGO_URI = process.env.MONGO_URI
-
 export default async function connectDb() {
   try {
-    await mongoose.connect(MONGO_URI!)
-    console.log(`Database connected to successfully.`)
+    await mongoose.connect(process.env.MONGO_URI!)
+    console.log(`Database connected successfully.`)
   }
   catch (error) {
-    console.log(`Failed to connect with database: ${error}`)
+    console.error(`Failed to connect with database: ${error}`)
   }
 }
