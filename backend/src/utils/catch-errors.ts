@@ -6,7 +6,7 @@ type AsyncController = (
   next: NextFunction
 ) => Promise<any>
 
-function catchError(controller: AsyncController): AsyncController {
+export default function catchError(controller: AsyncController): AsyncController {
   return async (req, res, next) => {
     try {
       controller(req, res, next)
@@ -16,5 +16,3 @@ function catchError(controller: AsyncController): AsyncController {
     }
   }
 }
-
-export default catchError

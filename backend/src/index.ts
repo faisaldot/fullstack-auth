@@ -5,6 +5,7 @@ import express from 'express'
 import connectDb from './config/db'
 import { OK } from './constant/http-code'
 import errorHandler from './middleware/error-handler'
+import authRoute from './modules/auth.route'
 
 dotenv.config()
 
@@ -25,11 +26,14 @@ app.use(
 )
 
 // Health check route
-app.get('/', (req, res) => {
+app.get('/health', (req, res) => {
   res.status(OK).json({
     health: 'ok',
   })
 })
+
+// Routes
+app.use('/auth', authRoute)
 
 // Error handler middleware
 app.use(errorHandler)
